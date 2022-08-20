@@ -51,9 +51,6 @@ export class PokemonService {
   }
 
   async findOne(term: string) {
-    // const reg = new RegExp('^[0-9]+$');
-    // if(reg.test(id)){
-    // }
     let pokemon: Pokemon;
     if (!isNaN(+term)) {
       pokemon = await this.pokemonModel.findOne({
@@ -87,8 +84,12 @@ export class PokemonService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+  async remove(id: string) {
+    const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
+    if (deletedCount === 0) {
+      throw new BadRequestException(`Pkemon with id: ${id} not found`);
+    }
+    return;
   }
 
   private handlerExceptions(error) {
