@@ -5,6 +5,7 @@ import { join } from 'path';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { CommonModule } from './common/common.module';
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_URL),
     CommonModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],

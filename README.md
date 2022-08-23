@@ -53,3 +53,12 @@ Crea el contenedor con mongo:5
 # create de container
 $ yarn db-up
 ```
+
+## Seed
+
+Crea el contenedor con mongo:5
+
+```bash
+# GET
+$ http://localhost:3000/api/v2/seed
+```
