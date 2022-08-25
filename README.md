@@ -56,7 +56,7 @@ $ yarn db-up
 
 ## Seed
 
-Crea el contenedor con mongo:5
+Crea el contenedor con mongo:5 y llena con la semilla
 
 ```bash
 # GET

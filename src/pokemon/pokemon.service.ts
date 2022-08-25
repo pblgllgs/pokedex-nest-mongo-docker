@@ -37,17 +37,15 @@ export class PokemonService {
     }
   }
 
-  async findAll() {
-    try {
-      const pokemons = await this.pokemonModel.find();
-      return pokemons;
-    } catch (error) {
-      this.handlerExceptions(error);
-      console.log(error);
-      throw new InternalServerErrorException(
-        'Cant obtain pokemons - check server logs',
-      );
-    }
+  async findAll({ offset = 0, limit = 10 }) {
+    const pokemons = await this.pokemonModel
+      .find()
+      .skip(offset)
+      .limit(limit)
+      .sort({
+        no: 1,
+      });
+    return pokemons;
   }
 
   async findOne(term: string) {
@@ -87,7 +85,7 @@ export class PokemonService {
   async remove(id: string) {
     const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
     if (deletedCount === 0) {
-      throw new BadRequestException(`Pkemon with id: ${id} not found`);
+      throw new BadRequestException(`Pokemon with id: ${id} not found`);
     }
     return;
   }
@@ -100,5 +98,15 @@ export class PokemonService {
         `Pokemon exist in db ${JSON.stringify(error.keyValue)}`,
       );
     }
+  }
+
+  seedPokemons(pokemons: { no: string; name: string }[]) {
+    const addPoke = async (poke: { no: string; name: string }) => {
+      return await this.pokemonModel.create(poke);
+    };
+
+    pokemons.map((poke) => {
+      return addPoke(poke);
+    });
   }
 }

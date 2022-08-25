@@ -14,7 +14,7 @@ import { SeedModule } from './seed/seed.module';
     }),
     PokemonModule,
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URL),
+    MongooseModule.forRoot(process.env.MONGO_URL_LOCAL),
     CommonModule,
     SeedModule,
   ],
