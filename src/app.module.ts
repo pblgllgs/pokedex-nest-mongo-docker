@@ -6,6 +6,8 @@ import { PokemonModule } from './pokemon/pokemon.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { EnvConfigutarion } from './config/app.config';
+import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
@@ -13,7 +15,10 @@ import { SeedModule } from './seed/seed.module';
       rootPath: join(__dirname, '..', 'public'),
     }),
     PokemonModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [EnvConfigutarion],
+      validationSchema: JoiValidationSchema,
+    }),
     MongooseModule.forRoot(process.env.MONGO_URL_LOCAL),
     CommonModule,
     SeedModule,

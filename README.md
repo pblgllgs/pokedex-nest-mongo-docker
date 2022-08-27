@@ -29,7 +29,7 @@
 ## Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Running the app
@@ -53,6 +53,10 @@ Crea el contenedor con mongo:5
 # create de container
 $ yarn db-up
 ```
+
+## Variables de entorno
+
+clonar el archivo __.env.template__ y completar los campos requeridos y renombrar a __.env__
 
 ## Seed
 
