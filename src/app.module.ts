@@ -19,7 +19,7 @@ import { JoiValidationSchema } from './config/joi.validation';
       load: [EnvConfigutarion],
       validationSchema: JoiValidationSchema,
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL_LOCAL),
+    MongooseModule.forRoot(process.env.MONGO_URL_WEB),
     CommonModule,
     SeedModule,
   ],
