@@ -18,8 +18,9 @@ import { JoiValidationSchema } from './config/joi.validation';
     ConfigModule.forRoot({
       load: [EnvConfigutarion],
       validationSchema: JoiValidationSchema,
+      envFilePath: ['.env.', '.env.prod'],
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL_LOCAL),
+    MongooseModule.forRoot(process.env.MONGODB),
     CommonModule,
     SeedModule,
   ],
