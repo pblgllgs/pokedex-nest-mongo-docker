@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     image: pokedex-docker
     container_name: pokedexapp
-    restart: always # reiniciar el contenedor si se detiene
+    #restart: none # reiniciar el contenedor si se detiene
     ports:
       - "${PORT}:${PORT}"
     # working_dir: /var/www/pokedex
@@ -23,7 +23,7 @@ services:
   db:
     image: mongo:5
     container_name: mongo-poke
-    restart: always
+    #restart: always
     ports:
       - 27017:27017
     environment:
